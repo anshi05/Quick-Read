@@ -1,26 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "QuickRead: Web Page Summarizer",
+  "name": "Quick Read",
   "version": "1.0",
   "description": "Summarize web page content using Gemini.",
   "permissions": ["activeTab", "scripting"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "public/popup.html",
     "default_icon": {
-      "128": "icons/icon.png"
+      "128": "public/icons/icon.png"
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["src/content.js"]
     }
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
   ]
 }
